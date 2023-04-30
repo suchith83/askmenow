@@ -6,7 +6,7 @@ import os
 
 
 db = SQLAlchemy()
-DB_NAME = "d.db"
+DB_NAME = "askmenow.db"
 
 
 

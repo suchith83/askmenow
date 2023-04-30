@@ -187,7 +187,7 @@ def edit_profile():
 # @views.route('/cat')
 # @login_required
 # def cat():
-#     newcategory = Category(name="Music")
+#     newcategory = Category(name="Technology")
 #     db.session.add(newcategory)
 #     db.session.commit()
 #     return redirect('/')
