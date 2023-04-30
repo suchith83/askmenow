@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title%}{{ category }}{% endblock%}
+
+{% block content %}
+
+<div class="col-sm-3">
+    <div class="dropdown" style="margin-top: 10px;">
+      <button class="btn btn-secondary dropdown-toggle" role="button" type="button" id="categoryDropdown"
+        data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+        Select Category
+      </button>
+      <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+        <a class="dropdown-item" href="/category">All</a>
+        <a class="dropdown-item" href="/category/Technology">Technology</a>
+        <a class="dropdown-item" href="/category/Music">Music</a>
+        <a class="dropdown-item" href="/category/Sports">Sports</a>
+      </div>
+    </div>
+  </div>
+
+{% for question in questions %}
+{% for answer in question.answers %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card mt-2">
+
+
+                <div class="card-body">
+                    <h5 class="card-title"><a href="/{{question.category.name}}/{{question.id}}">{{ answer.question.question }}</a></h5>
+                    <p class="card-text">{{ answer.answer }}</p>
+                    {% if answer.photo %}
+                    <img src="{{ url_for('static', filename='images/' + answer.photo) }}" alt="Photo" class="card-img-top"
+                        class="img-fluid">
+                    {% endif %}
+                    <div class="card-footer">
+                        <small class="text-muted">Posted by <a href="/profile/{{ answer.user.username }}">{{ answer.user.username }}</a></small>
+                        <div class="float-right">
+                            <a href="#" class="btn btn-sm btn-outline-secondary mr-2"><i class="fa fa-thumbs-up"></i>
+                                Upvote</a>
+                            <a href="#" class="btn btn-sm btn-outline-secondary mr-2"><i class="fa fa-thumbs-down"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-secondary"><i class="fa fa-comment"></i>
+                                Comment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+{% endfor %}
+{% endfor %}
+
+
+{% endblock %}
